@@ -1,9 +1,11 @@
 import { Button } from "@nextui-org/react";
 
+import { MainLayout } from "@/layouts";
+
 export default function Home() {
   return (
-    <div>
+    <MainLayout>
       <Button>Click me</Button>
-    </div>
+    </MainLayout>
   );
 }
