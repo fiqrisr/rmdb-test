@@ -1737,6 +1737,18 @@
   dependencies:
     tslib "^2.4.0"
 
+"@tanstack/query-core@5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.0.5.tgz#db02d648398f75a04cc536dacd640265f3614b14"
+  integrity sha512-MThCETMkHDHTnFZHp71L+SqTtD5d6XHftFCVR1xRJdWM3qGrlQ2VCXaj0SKVcyJej2e1Opa2c7iknu1llxCDNQ==
+
+"@tanstack/react-query@^5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.0.5.tgz#f26e05290f4b6bc9014704a65d05cf0cf47afe6e"
+  integrity sha512-ZG0Q4HZ0iuI8mWiZ2/MdVYPHbrmAVhMn7+gLOkxJh6zLIgCL4luSZlohzN5Xt4MjxfxxWioO1nemwpudaTsmQg==
+  dependencies:
+    "@tanstack/query-core" "5.0.5"
+
 "@types/color-convert@*":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-2.0.2.tgz#a5fa5da9b866732f8bf86b01964869011e2a2356"
@@ -3263,6 +3275,11 @@ keyv@^4.5.3:
   dependencies:
     json-buffer "3.0.1"
 
+ky@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-1.1.1.tgz#e2710fa9e2f24c75111161f50fa2bf8a0a99e736"
+  integrity sha512-fEzUY9u7/Mlh5TRF1whK46OpwzTBA1VLm0L3waLD0oZepijQqZ51oqIcA3D9AiuxR+MZXt5g5g07n0y0MF5QRA==
+
 language-subtag-registry@~0.3.2:
   version "0.3.22"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.22.tgz#2e1500861b2e457eba7e7ae86877cbd08fa1fd1d"
@@ -4031,6 +4048,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swiper@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.0.3.tgz#9c325154db2a4431f508b7e8e300621365eb4c3d"
+  integrity sha512-MyV9ooQsriAe2EibeamqewLjgCfSvl2xoyratl6S3ln5BXDL4BzlO6mxcbLMCzQL6Z60b/u0AS/nKrepL0+TAg==
 
 tailwind-merge@^1.14.0:
   version "1.14.0"
