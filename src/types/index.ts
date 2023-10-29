@@ -9,6 +9,11 @@ export type DiscoverMoviesQueryParams = {
   sort_by?: SortBy;
 };
 
+export type SearchMoviesQueryParams = {
+  page?: number;
+  query: string;
+};
+
 export type MovieListResponse = CommonListResponse & {
   results: MovieListItem[];
 };
