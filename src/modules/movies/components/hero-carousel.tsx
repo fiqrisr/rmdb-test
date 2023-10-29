@@ -18,7 +18,7 @@ export type HeroCarouselProps = {
 export const HeroCarousel = ({ slideList }: HeroCarouselProps) => {
   return (
     <Swiper
-      className="mt-10 mb-20 shadow-2xl"
+      className="mt-10 mb-20 shadow-violet-500/25 shadow-2xl"
       centeredSlides
       loop
       loopAdditionalSlides={3}

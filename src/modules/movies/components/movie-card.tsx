@@ -19,7 +19,10 @@ export const MovieCard = ({
 }: MovieCardProps) => {
   return (
     <div>
-      <Card isFooterBlurred className="w-full h-64 mb-3">
+      <Card
+        isFooterBlurred
+        className="w-full h-64 mb-3 hover:-translate-y-2 hover:shadow-2xl hover:shadow-violet-500/50 transition-all"
+      >
         <Image
           removeWrapper
           src={`${BASE_TMDB_IMAGE_URL}/${MOVIE_POSTER_SIZE}/${posterPath}`}

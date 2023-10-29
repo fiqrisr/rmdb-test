@@ -12,7 +12,7 @@ export const MovieService = {
           page,
           sort_by,
           "vote_average.gte": 5,
-          "vote_count.gte": 500
+          "vote_count.gte": 100
         }
       })
       .json<MovieListResponse>();

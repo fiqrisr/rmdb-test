@@ -4,11 +4,11 @@ import { SortBy } from "@/types";
 const sortData: { value: SortBy; label: string }[] = [
   {
     value: "popularity.asc",
-    label: "Popularity (asc)"
+    label: "Less Popular"
   },
   {
     value: "popularity.desc",
-    label: "Popularity (desc)"
+    label: "Most Popular"
   }
 ];
 
