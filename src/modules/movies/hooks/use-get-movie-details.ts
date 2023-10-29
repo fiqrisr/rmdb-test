@@ -8,10 +8,7 @@ type UseGetMovieDetailsProps = {
   queryParams: {
     movieId: number;
   };
-  options?: Omit<
-    UseQueryOptions<MovieDetailsResponse & { credits: { crew: MovieCrew[] } }>,
-    "queryKey"
-  >;
+  options?: Omit<UseQueryOptions<MovieDetailsResponse>, "queryKey">;
 };
 
 export const useGetMovieDetails = ({

@@ -5,9 +5,10 @@ import dayjs from "dayjs";
 
 import { MainLayout } from "@/layouts";
 import { BASE_TMDB_IMAGE_URL, MOVIE_BACKDROP_SIZE } from "@/configs";
-import { getImageDominantColor } from "@/utils";
+import { calcTime, getImageDominantColor } from "@/utils";
 
 import { useGetMovieDetails } from "../hooks/use-get-movie-details";
+import { CastList } from "@/modules/movies/components/cast-list";
 
 export const MovieDetailsPage = () => {
   const { query } = useRouter();
@@ -97,7 +98,15 @@ export const MovieDetailsPage = () => {
                     <span className="px-2">•</span>
                   </>
                 )}
+
                 <span>{generateMovieGenres()}</span>
+
+                {data?.runtime && (
+                  <>
+                    <span className="px-2">•</span>
+                    <span>{calcTime(data.runtime)}</span>
+                  </>
+                )}
               </p>
 
               <p className="font-bold text-xl mt-8 mb-2">Overview</p>
@@ -111,7 +120,7 @@ export const MovieDetailsPage = () => {
               ) : (
                 <>
                   <p>{data?.overview}</p>
-                  <div className="flex gap-x-32 mt-8">
+                  <div className="flex flex-col md:flex-row gap-y-6 gap-x-32 mt-8">
                     <div>
                       <p className="font-bold">{movieDirector}</p>
                       <p>Director</p>
@@ -128,11 +137,7 @@ export const MovieDetailsPage = () => {
         </div>
       </div>
 
-      {isLoading && (
-        <div className="flex justify-center items-center my-16">
-          <Spinner size="lg" color="secondary" />
-        </div>
-      )}
+      <CastList castList={data?.credits?.cast || []} isLoading={isLoading} />
     </MainLayout>
   );
 };

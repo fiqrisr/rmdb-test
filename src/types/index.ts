@@ -40,6 +40,10 @@ export type MovieDetailsResponse = {
   backdrop_path: string;
   belongs_to_collection: null;
   budget: number;
+  credits: {
+    cast: MovieCast[];
+    crew: MovieCrew[];
+  };
   genres: MovieGenre[];
   homepage: string;
   id: number;
@@ -63,16 +67,26 @@ export type MovieDetailsResponse = {
   vote_count: number;
 };
 
-export type MovieCrew = {
+export type CommonPeople = {
   adult: boolean;
+  credit_id: string;
   gender: number;
   id: number;
   known_for_department: string;
   name: string;
   original_name: string;
   popularity: number;
-  profile_path: null;
+  profile_path: string;
+};
+
+export type MovieCast = CommonPeople & {
+  cast_id: number;
+  character: string;
   credit_id: string;
+  order: number;
+};
+
+export type MovieCrew = CommonPeople & {
   department: string;
   job: string;
 };

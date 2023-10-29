@@ -27,7 +27,6 @@ const populateHeroCarouselData = (
 export const HomePage = () => {
   const [firstRender, setFirstRender] = useState(true);
   const [sortBy, setSortBy] = useState<SortBy>("popularity.desc");
-  const [search, setSearch] = useState("");
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGetDiscoverMoviesQuery({

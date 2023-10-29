@@ -43,7 +43,7 @@ export const MovieService = {
           language: "en-US"
         }
       })
-      .json<MovieDetailsResponse & { credits: { crew: MovieCrew[] } }>();
+      .json<MovieDetailsResponse>();
   },
 
   getMovieGenres: async () => {
