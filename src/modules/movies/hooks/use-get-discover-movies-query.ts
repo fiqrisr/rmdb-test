@@ -1,4 +1,4 @@
-import { useInfiniteQuery, UseQueryOptions } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { SortBy } from "@/types";
 
@@ -9,7 +9,6 @@ type UseGetDiscoverMoviesQueryProps = {
     page?: number;
     sortBy: SortBy;
   };
-  options?: UseQueryOptions;
 };
 
 export const useGetDiscoverMoviesQuery = ({

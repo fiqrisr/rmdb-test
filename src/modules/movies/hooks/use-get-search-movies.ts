@@ -1,4 +1,4 @@
-import { useInfiniteQuery, UseQueryOptions } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { MovieService } from "../services/movie-service";
 
@@ -7,7 +7,6 @@ type UseGetSearchMoviesQueryProps = {
     page?: number;
     query: string;
   };
-  options?: UseQueryOptions;
 };
 
 export const useGetSearchMoviesQuery = ({
