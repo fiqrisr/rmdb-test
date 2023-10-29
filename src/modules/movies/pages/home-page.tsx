@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button, Spinner } from "@nextui-org/react";
 
 import { MainLayout } from "@/layouts";
 import { MovieListItem, SortBy } from "@/types";
@@ -7,7 +8,6 @@ import { useGetDiscoverMoviesQuery } from "../hooks/use-get-discover-movies-quer
 import { HeroCarousel, HeroCarouselProps } from "../components/hero-carousel";
 import { MovieList } from "../components/movie-list";
 import { MovieSortSelect } from "../components/movie-sort-select";
-import { Button } from "@nextui-org/react";
 
 const populateHeroCarouselData = (
   movieList: MovieListItem[]
@@ -52,11 +52,24 @@ export const HomePage = () => {
   }, [isLoading, data, firstRender]);
 
   return (
-    <MainLayout hero={<HeroCarousel slideList={slideData} />}>
+    <MainLayout
+      hero={
+        <HeroCarousel
+          slideList={slideData}
+          isLoading={isLoading && firstRender}
+        />
+      }
+    >
       <div className="flex justify-between items-center mb-8">
         <h1 className="font-bold text-4xl">Discover Movies</h1>
         <MovieSortSelect selectedSort={sortBy} setSelectedSort={setSortBy} />
       </div>
+
+      {isLoading && (
+        <div className="flex justify-center items-center my-16">
+          <Spinner size="lg" color="secondary" />
+        </div>
+      )}
 
       <div className="flex flex-col gap-y-8">
         {data?.pages?.map((page) => (

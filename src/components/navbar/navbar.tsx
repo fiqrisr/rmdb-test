@@ -1,6 +1,6 @@
+import { FormEvent } from "react";
 import Link from "next/link";
 import { atom, useAtom } from "jotai";
-import { atomWithReset } from "jotai/utils";
 import {
   Input,
   Navbar as NextUINavbar,
@@ -12,7 +12,6 @@ import { ThemeSwitcher } from "@/components";
 import { AppLogo } from "@/icons/app-logo";
 import { SearchIcon } from "@/icons/search-icon";
 import { useRouter } from "next/router";
-import { FormEventHandler } from "react";
 
 export const searchAtom = atom("");
 
