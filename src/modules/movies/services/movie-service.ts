@@ -10,7 +10,9 @@ export const MovieService = {
       .get("discover/movie", {
         searchParams: {
           page,
-          sort_by
+          sort_by,
+          "vote_average.gte": 5,
+          "vote_count.gte": 500
         }
       })
       .json<MovieListResponse>();

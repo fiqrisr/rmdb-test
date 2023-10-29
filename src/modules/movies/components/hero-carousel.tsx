@@ -18,7 +18,7 @@ export type HeroCarouselProps = {
 export const HeroCarousel = ({ slideList }: HeroCarouselProps) => {
   return (
     <Swiper
-      className="my-10 shadow-2xl"
+      className="mt-10 mb-20 shadow-2xl"
       centeredSlides
       loop
       loopAdditionalSlides={3}
@@ -28,7 +28,7 @@ export const HeroCarousel = ({ slideList }: HeroCarouselProps) => {
         perSlideOffset: 15
       }}
       autoplay={{
-        delay: 70000,
+        delay: 7000,
         disableOnInteraction: false
       }}
       initialSlide={Math.floor(Math.random() * 8)}

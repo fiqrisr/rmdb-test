@@ -17,9 +17,9 @@ export const MainLayout = ({
   return (
     <div>
       <Navbar />
-      <main className="px-6 overflow-x-hidden">
-        {hero}
-        <div className="mt-6 container mx-auto max-w-5xl">{children}</div>
+      <main className="px-6 overflow-x-hidden pb-16">
+        <div className="min-h-[400px]">{hero}</div>
+        <div className="container mx-auto max-w-5xl">{children}</div>
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { useInfiniteQuery, UseQueryOptions } from "@tanstack/react-query";
 
 import { SortBy } from "@/types";
 
@@ -6,7 +6,7 @@ import { MovieService } from "../services/movie-service";
 
 type UseGetDiscoverMoviesQueryProps = {
   queryParams?: {
-    page: number;
+    page?: number;
     sortBy: SortBy;
   };
   options?: UseQueryOptions;
@@ -15,13 +15,18 @@ type UseGetDiscoverMoviesQueryProps = {
 export const useGetDiscoverMoviesQuery = ({
   queryParams
 }: UseGetDiscoverMoviesQueryProps = {}) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["discover_movies", queryParams],
-    queryFn: async () => {
+    queryFn: async ({ pageParam }) => {
       return await MovieService.getDiscoverMovies({
-        page: queryParams?.page,
+        page: pageParam,
         sort_by: queryParams?.sortBy
       });
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const nextPageExist = lastPage.page < lastPage.total_pages;
+      return nextPageExist ? lastPage.page + 1 : undefined;
     }
   });
 };
