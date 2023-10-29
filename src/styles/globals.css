@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper {
+  overflow: hidden;
+  max-width: 730px;
+}
+
+.swiper-wrapper {
+  width: 100%;
+}
+
+.swiper-slide {
+  position: relative;
+  border-radius: 20px;
+}
+

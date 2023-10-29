@@ -1,11 +1,7 @@
-import { Button } from "@nextui-org/react";
+import { HomePage } from "@/modules/movies";
 
-import { MainLayout } from "@/layouts";
+const Home = () => {
+  return <HomePage />;
+};
 
-export default function Home() {
-  return (
-    <MainLayout>
-      <Button>Click me</Button>
-    </MainLayout>
-  );
-}
+export default Home;
