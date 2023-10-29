@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
-import { MovieDetailsResponse } from "@/types";
+import { MovieCrew, MovieDetailsResponse } from "@/types";
 
 import { MovieService } from "../services/movie-service";
 
@@ -8,7 +8,10 @@ type UseGetMovieDetailsProps = {
   queryParams: {
     movieId: number;
   };
-  options?: UseQueryOptions<MovieDetailsResponse>;
+  options?: Omit<
+    UseQueryOptions<MovieDetailsResponse & { credits: { crew: MovieCrew[] } }>,
+    "queryKey"
+  >;
 };
 
 export const useGetMovieDetails = ({

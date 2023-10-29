@@ -1,6 +1,7 @@
 import { httpClient } from "@/http";
 import {
   DiscoverMoviesQueryParams,
+  MovieCrew,
   MovieDetailsResponse,
   MovieListResponse,
   SearchMoviesQueryParams
@@ -38,9 +39,20 @@ export const MovieService = {
     return await httpClient
       .get(`movie/${movieId}`, {
         searchParams: {
+          append_to_response: "credits",
           language: "en-US"
         }
       })
-      .json<MovieDetailsResponse>();
+      .json<MovieDetailsResponse & { credits: { crew: MovieCrew[] } }>();
+  },
+
+  getMovieGenres: async () => {
+    return await httpClient
+      .get("genre/movie/list", {
+        searchParams: {
+          language: "en-US"
+        }
+      })
+      .json<Array<{ id: number; name: string }>>();
   }
 };

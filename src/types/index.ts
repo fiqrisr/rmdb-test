@@ -63,6 +63,20 @@ export type MovieDetailsResponse = {
   vote_count: number;
 };
 
+export type MovieCrew = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: null;
+  credit_id: string;
+  department: string;
+  job: string;
+};
+
 export type MovieGenre = {
   id: number;
   name: string;

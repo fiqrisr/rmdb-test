@@ -16,7 +16,7 @@ export const MovieList = ({ movieList }: MovieListProps) => {
             name={movie.original_title}
             posterPath={movie.poster_path}
             releaseDate={movie.release_date}
-            vote={movie.vote_average}
+            vote={+movie.vote_average.toFixed(1)}
           />
         </Link>
       ))}

@@ -22,7 +22,7 @@ export const Navbar = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push({
-      pathname: "search",
+      pathname: "/search",
       query: {
         q: search
       }
