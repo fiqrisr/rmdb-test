@@ -21,6 +21,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-simple-star-rating": "^5.1.7",
     "swiper": "^11.0.3"
   },
   "devDependencies": {

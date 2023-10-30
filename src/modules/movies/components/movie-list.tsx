@@ -31,6 +31,7 @@ export const MovieList = ({ movieList, isSearchPage }: MovieListProps) => {
           key={movie.id}
         >
           <MovieCard
+            id={movie.id}
             name={movie.original_title}
             posterPath={movie.poster_path}
             releaseDate={movie.release_date}

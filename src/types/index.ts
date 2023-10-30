@@ -115,3 +115,8 @@ export type SpokenLanguage = {
 };
 
 export type SortBy = "popularity.asc" | "popularity.desc";
+
+export type MovieRatingForStorage = {
+  movieId: number;
+  rating: number;
+};

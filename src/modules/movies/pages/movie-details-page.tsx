@@ -2,14 +2,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { Skeleton, Image } from "@nextui-org/react";
 import dayjs from "dayjs";
-import { atom, useAtom } from "jotai";
+import { atom, useAtom, useAtomValue } from "jotai";
 
 import { BASE_TMDB_IMAGE_URL, MOVIE_BACKDROP_SIZE } from "@/configs";
 import { Breadcrumb } from "@/components";
 import { MainLayout } from "@/layouts";
 import { calcTime, getImageDominantColor } from "@/utils";
 
+import { movieRatingListAtom } from "../atoms";
 import { CastList } from "../components/cast-list";
+import { RateMovie } from "../components/rate-movie";
 import { useGetMovieDetails } from "../hooks/use-get-movie-details";
 
 const formattedSearchQueryAtom = atom("");
@@ -44,6 +46,11 @@ export const MovieDetailsPage = () => {
   const movieScreenplay = data?.credits?.crew.find(
     (c) => c.job === "Screenplay"
   )?.original_name;
+
+  const movieRatingList = useAtomValue(movieRatingListAtom);
+  const movieRating = movieRatingList.find(
+    (rating) => rating.movieId === data?.id
+  );
 
   useEffect(() => {
     (async () => {
@@ -129,12 +136,16 @@ export const MovieDetailsPage = () => {
               {isLoading ? (
                 <Skeleton className="!bg-transparent rounded-xl w-2/5 h-9" />
               ) : (
-                <h1 className="text-3xl font-bold mb-1">
-                  {data?.original_title}{" "}
-                  <span className="font-normal">
-                    ({dayjs(data?.release_date).year()})
-                  </span>
-                </h1>
+                <div className="flex gap-x-3 items-center">
+                  <h1 className="text-3xl font-bold mb-1">
+                    {data?.original_title}{" "}
+                    <span className="font-normal">
+                      ({dayjs(data?.release_date).year()})
+                    </span>
+                  </h1>
+
+                  <RateMovie movieId={data?.id!} rating={movieRating?.rating} />
+                </div>
               )}
 
               <p>
