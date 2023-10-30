@@ -28,7 +28,11 @@ export const SearchPage = () => {
 
       <div className="flex flex-col gap-y-8">
         {data?.pages?.map((page) => (
-          <MovieList key={page.page} movieList={page?.results ?? []} />
+          <MovieList
+            key={page.page}
+            movieList={page?.results ?? []}
+            isSearchPage
+          />
         ))}
       </div>
 

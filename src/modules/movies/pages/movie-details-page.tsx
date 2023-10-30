@@ -2,17 +2,26 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { Skeleton, Image } from "@nextui-org/react";
 import dayjs from "dayjs";
+import { atom, useAtom } from "jotai";
 
-import { MainLayout } from "@/layouts";
 import { BASE_TMDB_IMAGE_URL, MOVIE_BACKDROP_SIZE } from "@/configs";
+import { Breadcrumb } from "@/components";
+import { MainLayout } from "@/layouts";
 import { calcTime, getImageDominantColor } from "@/utils";
 
+import { CastList } from "../components/cast-list";
 import { useGetMovieDetails } from "../hooks/use-get-movie-details";
-import { CastList } from "@/modules/movies/components/cast-list";
+
+const formattedSearchQueryAtom = atom("");
 
 export const MovieDetailsPage = () => {
   const { query } = useRouter();
   const movieId = query.id as unknown as number;
+  const fromSearch = query.from === "search";
+  const fromSearchQuery = query.q as string;
+  const [formattedSearchQuery, setFormattedSearchQuery] = useAtom(
+    formattedSearchQueryAtom
+  );
   const [backdropImageDominantColor, setBackdropImageDominantColor] = useState<
     [number, number, number]
   >([0, 0, 0]);
@@ -39,6 +48,10 @@ export const MovieDetailsPage = () => {
   useEffect(() => {
     (async () => {
       if (!isLoading && data && data.backdrop_path) {
+        const searchParams = new URLSearchParams();
+        searchParams.append("q", fromSearchQuery);
+        setFormattedSearchQuery(searchParams.toString());
+
         const dominantColor = await getImageDominantColor(movieBackdropUrl);
 
         if (dominantColor) {
@@ -64,6 +77,30 @@ export const MovieDetailsPage = () => {
 
   return (
     <MainLayout>
+      <div className="mb-6">
+        {isLoading ? (
+          <div className="flex gap-x-4">
+            <Skeleton className="rounded-xl w-[140px] h-5" />
+            <Skeleton className="rounded-xl w-[140px] h-5" />
+          </div>
+        ) : (
+          <Breadcrumb
+            items={[
+              {
+                key: "from-page",
+                isLink: true,
+                label: fromSearch ? "Search Results" : "Discover Movies",
+                href: fromSearch ? `/search?${formattedSearchQuery}` : "/"
+              },
+              {
+                key: "movie-detail",
+                label: data?.original_title!
+              }
+            ]}
+          />
+        )}
+      </div>
+
       <div
         className="w-full bg-auto bg-no-repeat bg-center rounded-3xl overflow-hidden"
         style={{ backgroundImage: `url(${movieBackdropUrl})` }}
