@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { Button, Spinner } from "@nextui-org/react";
+import { MdSearchOff } from "react-icons/md";
 
 import { MainLayout } from "@/layouts";
 import { useGetSearchMoviesQuery } from "../hooks/use-get-search-movies";
@@ -23,6 +24,13 @@ export const SearchPage = () => {
       {isLoading && (
         <div className="flex justify-center items-center my-16">
           <Spinner size="lg" color="secondary" />
+        </div>
+      )}
+
+      {data?.pages && data?.pages[0].results.length === 0 && (
+        <div className="flex flex-col justify-center items-center mt-20">
+          <MdSearchOff size={200} />
+          <p className="text-lg font-medium">No results to show</p>
         </div>
       )}
 
