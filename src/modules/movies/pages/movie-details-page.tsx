@@ -56,6 +56,7 @@ export const MovieDetailsPage = () => {
     (async () => {
       if (!isLoading && data && data.backdrop_path) {
         const searchParams = new URLSearchParams();
+        searchParams.append("from", "search");
         searchParams.append("q", fromSearchQuery);
         setFormattedSearchQuery(searchParams.toString());
 
