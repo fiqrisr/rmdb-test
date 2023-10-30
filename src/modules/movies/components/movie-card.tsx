@@ -25,7 +25,11 @@ export const MovieCard = ({
       >
         <Image
           removeWrapper
-          src={`${BASE_TMDB_IMAGE_URL}/${MOVIE_POSTER_SIZE}/${posterPath}`}
+          src={
+            posterPath
+              ? `${BASE_TMDB_IMAGE_URL}/${MOVIE_POSTER_SIZE}/${posterPath}`
+              : "/no_image.jpg"
+          }
           alt={`${name} poster`}
           className="w-full h-full object-cover"
           loading="lazy"

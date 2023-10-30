@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { Skeleton, Spinner, Image } from "@nextui-org/react";
+import { Skeleton, Image } from "@nextui-org/react";
 import dayjs from "dayjs";
 
 import { MainLayout } from "@/layouts";
@@ -16,6 +16,8 @@ export const MovieDetailsPage = () => {
   const [backdropImageDominantColor, setBackdropImageDominantColor] = useState<
     [number, number, number]
   >([0, 0, 0]);
+
+  const movieDetailContainer = useRef(null);
 
   const { data, isLoading } = useGetMovieDetails({
     queryParams: {
@@ -42,6 +44,13 @@ export const MovieDetailsPage = () => {
         if (dominantColor) {
           const [r, g, b] = dominantColor.value;
           setBackdropImageDominantColor([r, g, b]);
+
+          if (dominantColor.isLight) {
+            // @ts-ignore
+            movieDetailContainer?.current!.classList.remove("!text-white");
+            // @ts-ignore
+            movieDetailContainer?.current!.classList.add("!text-black");
+          }
         }
       }
     })();
@@ -79,7 +88,7 @@ export const MovieDetailsPage = () => {
               </Skeleton>
             </div>
 
-            <div className="py-4 !text-white w-full">
+            <div ref={movieDetailContainer} className="py-4 !text-white w-full">
               {isLoading ? (
                 <Skeleton className="!bg-transparent rounded-xl w-2/5 h-9" />
               ) : (
@@ -121,14 +130,18 @@ export const MovieDetailsPage = () => {
                 <>
                   <p>{data?.overview}</p>
                   <div className="flex flex-col md:flex-row gap-y-6 gap-x-32 mt-8">
-                    <div>
-                      <p className="font-bold">{movieDirector}</p>
-                      <p>Director</p>
-                    </div>
-                    <div>
-                      <p className="font-bold">{movieScreenplay}</p>
-                      <p>Screenplay</p>
-                    </div>
+                    {movieDirector && (
+                      <div>
+                        <p className="font-bold">{movieDirector}</p>
+                        <p>Director</p>
+                      </div>
+                    )}
+                    {movieScreenplay && (
+                      <div>
+                        <p className="font-bold">{movieScreenplay}</p>
+                        <p>Screenplay</p>
+                      </div>
+                    )}
                   </div>
                 </>
               )}
