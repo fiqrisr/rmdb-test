@@ -52,7 +52,7 @@ export const HeroCarousel = ({ isLoading, slideList }: HeroCarouselProps) => {
             />
             <div className="absolute bottom-0 px-6 mb-6 text-white">
               <p className="text-2xl mb-3 font-bold">{slide.movieName}</p>
-              <p>{slide.movieDescription}</p>
+              <p className="hidden md:block">{slide.movieDescription}</p>
             </div>
           </SwiperSlide>
         ))}
